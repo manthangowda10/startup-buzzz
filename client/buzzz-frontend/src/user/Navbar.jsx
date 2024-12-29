@@ -2,8 +2,14 @@ import { Link } from "react-router-dom";
 
 const Navbar = ()=> {
     return(
-        <nav style = {{ padding: '1rem', backgroundColor: `#eee`}}>
-            <Link to = "/">Home</Link> | <Link to = "/login">Login</Link> | <Link to = "/register">Signup</Link>
+        <nav className="Navbar">
+            <div className="Navbar-left">
+                <Link to= "/" className= "Home-link">Home</Link>
+            </div>
+            <div className="Navbar-right">
+                <Link to = "/login" className="nav-link">Login</Link>
+                <Link to = "/signup" className="nav-link">Signup</Link>
+            </div>
         </nav>
     )
 }

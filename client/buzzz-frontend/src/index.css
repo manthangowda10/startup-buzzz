@@ -1,0 +1,44 @@
+.Navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: aqua;
+    padding: 1rem;
+    color: white;
+    
+    height:fit-content;
+}
+.Navbar-left{
+    flex: 1;
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.Navbar-right{
+    flex:1;
+    display:flex;
+    justify-content: flex-end;
+    gap:1rem;
+
+}
+.Home-link{
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+}
+.Home-link:hover{
+    text-decoration: underline;
+    color: black;
+}
+
+.nav-link{
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+}
+.nav-link:hover{
+    text-decoration: underline;
+    color: black;
+}
