@@ -1,10 +1,15 @@
+body{
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
 .Navbar{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: aqua;
+    background-color: #f8fafc;
     padding: 1rem;
-    color: white;
+    color: #FFFFFF;
     
     height:fit-content;
 }
@@ -23,22 +28,31 @@
 }
 .Home-link{
     text-decoration: none;
-    color: white;
+    color: #20B2AA;
     font-size: 1rem;
     font-weight: bold;
 }
 .Home-link:hover{
     text-decoration: underline;
-    color: black;
+    color: #15706c;
 }
 
 .nav-link{
     text-decoration: none;
-    color: white;
+    color: #20B2AA;
     font-size: 1rem;
     font-weight: bold;
 }
 .nav-link:hover{
     text-decoration: underline;
-    color: black;
+    color: #15706c;
+}
+.register{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding-top: 200px;
+    gap: 20px;
+    
 }
