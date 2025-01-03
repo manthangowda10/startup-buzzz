@@ -1,5 +1,8 @@
+
 const { Client } = require('pg');
-require('dotenv').config(); // Ensure this is at the top
+
+require('dotenv').config({ path: "/home/manthan/Desktop/Buzzz/startup/.env" });
+
 
 const client = new Client({
     user: process.env.DB_USER, // Use environment variables
