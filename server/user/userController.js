@@ -1,6 +1,9 @@
 const Joi = require('joi');//Validating library Joi
 const bcrypt = require('bcrypt');
 const { createUser, findUserByName } = require('../db/queries');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
 
 
 const signupSchema = Joi.object({
@@ -62,7 +65,14 @@ const login = async (req, res) => {
         if(!isPasswordValid){
             return res.status(400).json({message:"Invalid password"});
         }
-        res.status(200).json({message:"User logged in successfully", user})
+
+        const token = jwt.sign({id:user.id}, process.env.JWT_SECRET,{expiresIn: '1h'})
+
+        res.status(200).json({
+            message:"User logged in successfully", 
+            user: { id: user.id, username:user.username },
+            token
+        })
     } catch (error) {
         console.error('Error during login', err.stack);
         res.status(500).json({message:"Internal server error"});
