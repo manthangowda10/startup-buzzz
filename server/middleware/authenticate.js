@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const client = require('../db/index');
+require('dotenv').config();
 
 module.exports = async(req, res , next) =>{
     const token = req.header('Authorization')?.split(' ')[1];
@@ -7,7 +8,7 @@ module.exports = async(req, res , next) =>{
         return res.status(401).json({message:"Access denied, No token provided"})
     }
     try {
-        const decoded = jwt.verify(token, process.env.JWT_secret);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
         req.user = decoded;
 
         const result = await client.query("SELECT * FROM users WHERE id = $1",[decoded.id]);
