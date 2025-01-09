@@ -1,4 +1,4 @@
-const db = require('./db');
+const db = require('../../db/index');
 
 const bookAppointement = async(req, res) => {
     const { user_id, service_id, appointement_date } = req.body;
