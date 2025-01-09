@@ -2,10 +2,10 @@ const express = require('express');
 const { bookAppointement, modifyAppointement, cancelAppointement } = require('./appointementController')
 const router = express.Router();
 
-router.post('/appointements',bookAppointement);
+router.post('/',bookAppointement);
 
-router.put('/appointements/:appointementId',modifyAppointement);
+router.put('/:appointementId',modifyAppointement);
 
-router.delete('/appointements/:appointementId',cancelAppointement)
+router.delete('/:appointementId',cancelAppointement)
 
 module.exports = router;

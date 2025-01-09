@@ -8,7 +8,7 @@ const bookAppointement = async(req, res) => {
         return res.status(400).json({message:'Service not found'});
     }
 
-    const timeCheck = await db.query('SELECT * FROM appointements WHERE appointement_date = $1');
+    const timeCheck = await db.query('SELECT * FROM appointements WHERE appointement_date = $1',[appointement_date]);
     if( timeCheck.rowCount > 0 ){
         return res.status(400).json({message:'Appointement time is already booked'});
     }
@@ -29,7 +29,7 @@ const modifyAppointement = async (req,res) => {
     const {appointementId} = req.params;
     const { service_id, appointement_date } = req.body;
 
-    const appointement = await db.query('SELECT * FROM appointement WHERE id = $1',[appointementId])
+    const appointement = await db.query('SELECT * FROM appointements WHERE id = $1',[appointementId])
 
     if(appointement.rowCount === 0){
         return res.status(400).json({message:'Appointement not found'})
@@ -52,13 +52,13 @@ const modifyAppointement = async (req,res) => {
 }
 
 const cancelAppointement = async(req, res) => {
-    const { appointement_id } = req.params;
+    const {appointementId} = req.params;
 
-    const appointement = await db.query('SELECT * FROM appointements where id = $1',[appointement_id]);
+    const appointement = await db.query('SELECT * FROM appointements where id = $1',[appointementId]);
     if(appointement.rowCount === 0){
         return res.status(404).json({message:'Appointement not found'});
     }
-    await db.query('DELETE FROM appointements WHERE id = $1',[appointement_id]);
+    await db.query('DELETE FROM appointements WHERE id = $1',[appointementId]);
     return res.status(200).json({message:'Appointement cancelled successfully'})
 }
 
