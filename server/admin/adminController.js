@@ -1,14 +1,27 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken;')
 const db = require('../db/index');
+const Joi = require('joi');
+
 require('dotenv').config();
 
-const adminSignUp = async(req, res) =>{
-    const {name, email, phone , password} = req.body;
 
-    if( !name || !email || !phone || !password ) {
-        return res.status(400).json({ message: 'All fields are required'});
+
+const adminSignUp = async(req, res) =>{
+
+    const schema = Joi.object({
+        name: Joi.string().min(3).required(),
+        email: Joi.string().email().required(),
+        phone: Joi.string().pattern(/^\d+$/).min(10).max(15).required(),
+        password: Joi.string().min(6).required()
+    })
+
+    const { error } = schema.validate(req.body);
+    if(error){
+        return res.status(400).json({ message:error.details[0].message });
     }
+
+    const {name, email, phone , password} = req.body;
 
     try {
         const emailCheck = await db.query('SELECT * FROM admins WHERE email = $1',[email])
@@ -29,18 +42,26 @@ const adminSignUp = async(req, res) =>{
 }
 
 const adminLogin = async (req,res) =>{
+
+    const schema = Joi.object({
+        name: Joi.string().min(3).required(),
+        password: Joi.string().min(3).required()
+    })
+
+    const { error } = schema.validate(req.body);
+    if(error){
+        return res.status(400).json({message: error.details[0].message});
+    }
+
     const { name, password } = req.body;
     try {
-        if(!name || !password){
-            return res.status(400).json({message:'Name and password are required'});
-        }
-
+        
         const adminQuery = await client.query('SELECT * FROM admin WHERE name = $1',[name]);
             if(adminQuery.rowCount === 0){
                 res.status(400).json({message:'Admin not found'});
             }
 
-            const admin = adminQuery.rowCount[0];
+            const admin = adminQuery.rows[0];
 
             if(!admin.is_active){
                 res.status(403).json({message:'Admin is inactive'});
