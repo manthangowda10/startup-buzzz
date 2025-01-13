@@ -6,12 +6,12 @@ require('dotenv').config();
 const adminSignUp = async(req, res) =>{
     const {name, email, phone , password} = req.body;
 
-    if( !name || !!email || !phone || !password ) {
+    if( !name || !email || !phone || !password ) {
         return res.status(400).json({ message: 'All fields are required'});
     }
 
     try {
-        const emailCheck = db.query('SELECT * FROM admins WHERE email = $1',[email])
+        const emailCheck = await db.query('SELECT * FROM admins WHERE email = $1',[email])
         if(emailCheck.rowCount > 0){
             return res.status(400).json({message:'Email already exists'});
             }
