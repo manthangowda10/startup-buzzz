@@ -1,8 +1,8 @@
 const express= require('express');
 const router = express.Router();
-const {manageServices, viewAppointements} = require('./adminController');
+const {manageServices} = require('./serviceControl');
 
-router.post('/manageServices', manageServices);
+router.post('/manage', manageServices);
 
 
 module.exports = router;

@@ -1,8 +1,8 @@
 const express= require('express');
 const router = express.Router();
-const { viewAppointements } = require('./adminController');
+const { viewAppointements } = require('./appointementController');
 
 
-router.get('/viewAppointements',viewAppointements);
+router.get('/view',viewAppointements);
 
 module.exports = router;
