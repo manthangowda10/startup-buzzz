@@ -24,13 +24,13 @@ const adminSignUp = async(req, res) =>{
     const {name, email, phone , password} = req.body;
 
     try {
-        const emailCheck = await db.query('SELECT * FROM admins WHERE email = $1',[email])
+        const emailCheck = await db.query('SELECT * FROM admin WHERE email = $1',[email])
         if(emailCheck.rowCount > 0){
             return res.status(400).json({message:'Email already exists'});
             }
             const hashedPassword = await bcrypt.hash(password,10);
             const result = await db.query(
-                'INSERT INTO admins(name,email,password,phone) VALUES($1,$2,$3,$4) RETURNING id, name, email, phone',[name,email,hashedPassword,phone]
+                'INSERT INTO admin(name,email,password,phone) VALUES($1,$2,$3,$4) RETURNING id, name, email, phone',[name,email,hashedPassword,phone]
             );
             return res.status(200).json({message:'Admin account created successfully',
                 admin: result.rows[0]
@@ -56,7 +56,7 @@ const adminLogin = async (req,res) =>{
     const { name, password } = req.body;
     try {
         
-        const adminQuery = await client.query('SELECT * FROM admin WHERE name = $1',[name]);
+        const adminQuery = await db.query('SELECT * FROM admin WHERE name = $1',[name]);
             if(adminQuery.rowCount === 0){
                 res.status(400).json({message:'Admin not found'});
             }

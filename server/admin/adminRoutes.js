@@ -3,7 +3,7 @@ const router = express.Router();
 const viewAppointements = require('./appointements/appointementRoutes');
 const manageServices = require('./services/serviceRoutes');
 const { adminSignUp, adminLogin } = require('./adminController');
-const adminAuthenticate = require('../middleware/adminauthenticate');
+const {adminAuthenticate} = require('../middleware/adminauthenticate');
 
 
 

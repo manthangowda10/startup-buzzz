@@ -14,7 +14,7 @@ const manageServices = async(req,res)=> {
     }
     const { name, description } = req.body;
     try {
-        const result = await client.query('INSERT INTO SERVICES(name,description) VALUES($1,$2) RETURNING *',[name,description]);
+        const result = await client.query('INSERT INTO services(name,description) VALUES($1,$2) RETURNING *',[name,description]);
         res.status(201).json({
             message:"Service added successfully",
             service:result.rows[0]
