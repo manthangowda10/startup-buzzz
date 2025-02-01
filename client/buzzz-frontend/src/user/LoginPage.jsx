@@ -5,7 +5,7 @@ import { useState } from "react";
 const LoginPage = () => {
 
     const [email,setEmail] = useState("");
-    const [password,setPasswoord] = useState("");
+    const [password,setPassword] = useState("");
 
     const handleLogin = () => {
         console.log("Email: ",email);
@@ -24,6 +24,23 @@ const LoginPage = () => {
         value ={ email }
         onChange={(e) => setEmail(e.target.value)}
         />
+        <TextField 
+        id = "password"
+        label = "Password"
+        variant = "outlined"
+        fullWidth
+        margin="normal"
+        value = {password}
+        onChange={(e) => setPassword(e.target.value)} 
+        
+        />
+        <Button 
+        variant="contained"
+        color = "primary"
+        fullWidth
+        onClick={handleLogin}
+        style={{marginTop:20}}
+        > Login </Button>
          </div>
     )
 }
