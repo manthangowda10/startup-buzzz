@@ -13,29 +13,31 @@ const LoginPage = () => {
     }
 
     return(
-         <div style ={{maxWidth:400, margin:"0 auto", padding:"20px"}}>
+         <div className="login">
             <h2>Login</h2>
-        <TextField 
-        id="email" 
-        label="Email" 
-        variant="outlined"
-        fullWidth
-        type = "email"
-        margin="normal"
-        value ={ email }
-        onChange={(e) => setEmail(e.target.value)}
-        />
+            <div className="input-field" >  
+                <TextField 
+                id="email" 
+                label="Email" 
+                variant="outlined"
+                fullWidth
+                type = "email"
+                value ={ email }
+                onChange={(e) => setEmail(e.target.value)}
+                />
+            </div>
+        <div className="input-field" >
         <TextField 
         id = "password"
         label = "Password"
         variant = "outlined"
         fullWidth
         type = "password"
-        margin="normal"
         value = {password}
         onChange={(e) => setPassword(e.target.value)} 
-        
         />
+        </div>
+        <div className="button-container" >
         <Button 
         variant="contained"
         color = "primary"
@@ -43,6 +45,7 @@ const LoginPage = () => {
         onClick={handleLogin}
         style={{marginTop:20}}
         > Login </Button>
+        </div>
          </div>
     )
 }

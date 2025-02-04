@@ -12,21 +12,21 @@ const RegisterPage = () => {
     const handleRegister = () => {
         console.log("Name:", firstName);
         console.log("Number:", number);
-        console.log("Number:". number)
+        console.log("Number:", number)
     }
     return <div className = "register">
-        <div className='name'>
+        <h2>Register</h2>
+        <div className='input-field'>
         <TextField 
         id="name" 
         label="Enter your name" 
         variant="outlined" 
         fullWidth
-        margin = "normal"
         value = {firstName}
         onChange={(e) => setfirstName(e.target.value)}
         />
         </div>
-        <div className='number'>
+        <div className='input-field'>
         <TextField 
         id="number" 
         type = "tel" 
@@ -37,7 +37,7 @@ const RegisterPage = () => {
         onChange= {(e) => setNumber(e.target.value)}
         />
         </div>
-        <div className='password'>
+        <div className='input-field'>
         <TextField 
         id="password" 
         type = "password" 
@@ -47,6 +47,8 @@ const RegisterPage = () => {
         value = {password}
         onChange = {(e) => setPassword(e.target.value)}
         />
+        </div>
+        <div className='button-container'>
         <Button
         type = "submit"
         variant='contained'
