@@ -4,15 +4,37 @@ import { useState } from 'react';
 
 const RegisterPage = () => {
 
-        const [firstName,setfirstName] = useState("");
-        const [number, setNumber] = useState("");
+        const [fullName,setFullName] = useState("");
+        const [email,setEmail] = useState("");
+        const [username,setUsername] = useState("");
+        const [phone, setPhone] = useState("");
         const [password,setPassword] = useState("");
     
 
-    const handleRegister = () => {
-        console.log("Name:", firstName);
-        console.log("Number:", number);
-        console.log("Number:", number)
+    const handleRegister = async() => {
+        const userData = {
+            name: fullName,
+            email,
+            username,
+            phone,
+            password
+        };
+        try {
+            const response = await fetch("http://localhost:3000/user/signup",{
+                method: "POST",
+                headers:{ "Content-Type":"application/json"},
+                body:JSON.stringify(userData)
+            })
+            const data = await response.json();
+            if(response.ok){
+                alert("Registration successfull")
+            } else {
+                alert("Error registering " + data.message)
+            }
+        } catch (error) {
+            console.error("Registration error", error);
+            alert("Something went wrong, Please try again")
+        }
     }
     return <div className = "register">
         <h2>Register</h2>
@@ -22,19 +44,39 @@ const RegisterPage = () => {
         label="Enter your name" 
         variant="outlined" 
         fullWidth
-        value = {firstName}
-        onChange={(e) => setfirstName(e.target.value)}
+        value = {fullName}
+        onChange={(e) => setFullName(e.target.value)}
         />
         </div>
         <div className='input-field'>
         <TextField 
-        id="number" 
-        type = "tel" 
-        label="Enter your number" 
+        id="email" 
+        label="Enter your email" 
         variant="outlined" 
         fullWidth
-        value = {number}
-        onChange= {(e) => setNumber(e.target.value)}
+        value = {email}
+        onChange={(e) => setEmail(e.target.value)}
+        />
+        </div>
+        <div className='input-field'>
+        <TextField 
+        id="username" 
+        label="Enter your username" 
+        variant="outlined" 
+        fullWidth
+        value = {username}
+        onChange={(e) => setUsername(e.target.value)}
+        />
+        </div>
+        <div className='input-field'>
+        <TextField 
+        id="phone" 
+        type = "tel" 
+        label="Enter your phone" 
+        variant="outlined" 
+        fullWidth
+        value = {phone}
+        onChange= {(e) => setPhone(e.target.value)}
         />
         </div>
         <div className='input-field'>
