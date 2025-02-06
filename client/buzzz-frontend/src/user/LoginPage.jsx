@@ -7,9 +7,27 @@ const LoginPage = () => {
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
-    const handleLogin = () => {
-        console.log("Email: ",email);
-        console.log("Password: ", password);
+    const handleLogin = async() => {
+        const userData = {
+            email,
+            password
+        }
+        try {
+            const response = await fetch("http://localhost:3000/user/login",{
+                method:"POST",
+                headers: {"Content-Type":"application/json"},
+                body:JSON.stringify(userData)
+            })
+            const data = await response.json();
+            if(response.ok){
+                alert("Login successful")
+            } else {
+                alert("Error Logging in " + data.message)
+            }
+        } catch (error) {
+            console.error("Login error"+ error.message)
+            alert("Something went wrong, please try again")
+        }
     }
 
     return(
