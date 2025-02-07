@@ -1,13 +1,24 @@
 import { TextField,Button } from "@mui/material";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const LoginPage = () => {
 
+    const navigate = useNavigate();
+
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
 
+    useEffect(() => {
+        const storedUser = localStorage.getItem("user");
+        if(storedUser){
+            navigate("/dashboard");
+        }
+    },[navigate])
+
     const handleLogin = async() => {
+        
         const userData = {
             email,
             password
@@ -20,7 +31,9 @@ const LoginPage = () => {
             })
             const data = await response.json();
             if(response.ok){
-                alert("Login successful")
+                localStorage.setItem("user",JSON.stringify(data.user))
+                alert("Login successful");
+                navigate("/dashboard")
             } else {
                 alert("Error Logging in " + data.message)
             }

@@ -4,6 +4,7 @@ import HomePage from './user/HomePage';
 import RegisterPage from './user/RegisterPage';
 import LoginPage from './user/LoginPage';
 import Navbar from './user/Navbar'
+import Dashboard from './user/Dashboard';
 
 function App() {
   
@@ -15,6 +16,7 @@ function App() {
         <Route path = '/' element = { <HomePage/>} />
         <Route path = 'login' element = { <LoginPage/>} />
         <Route path = 'register' element = { <RegisterPage/>} />
+        <Route path = 'Dashboard' element = { <Dashboard/>} />
       </Routes>
     </>
   )
