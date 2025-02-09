@@ -1,21 +1,21 @@
 import { useState,useEffect } from "react";
 import { Navigate } from "react-router-dom";
 
-import(useState)
 
 const Dashboard = () => {
 
     const [user,setUser] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(()=>{
         const storedUser = localStorage.getItem("user");
         if(storedUser){
             setUser(JSON.parse(storedUser))
         }
-    })
+    },[navigate])
     const handleLogout =() =>{
         localStorage.removeItem("user");
-        Navigate("/login");
+        navigate("/login");
     }
 
     return <div className="dashboard" >
