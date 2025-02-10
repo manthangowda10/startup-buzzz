@@ -34,6 +34,7 @@ const LoginPage = () => {
                 localStorage.setItem("user",JSON.stringify(data.user))
                 alert("Login successful");
                 navigate("/dashboard")
+                window.location.reload();
             } else {
                 alert("Error Logging in " + data.message)
             }

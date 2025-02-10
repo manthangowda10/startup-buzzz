@@ -47,6 +47,11 @@ body{
     text-decoration: underline;
     color: #15706c;
 }
+.nav-text{
+    color: #20B2AA;
+    font-size: 1rem;
+    font-weight: bold;
+}
 .register{
     display: flex;
     flex-direction: column;
