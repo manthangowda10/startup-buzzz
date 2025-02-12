@@ -13,7 +13,7 @@ const createUser = async(name,email,password,username,phone) => {
     
 }
 
-const findUserByName = async(username, email) => {
+const findUserByEmailOrPhone = async(username, email) => {
     const query = 'SELECT * FROM users WHERE username = $1 OR email = $2';
     const values = [username,email];
 
@@ -27,5 +27,5 @@ const findUserByName = async(username, email) => {
 }
 
 module.exports = {
-    createUser,findUserByName
+    createUser,findUserByEmailOrPhone
 }
