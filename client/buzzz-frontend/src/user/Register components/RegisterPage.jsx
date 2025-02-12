@@ -6,11 +6,8 @@ const RegisterPage = () => {
 
         const [fullName,setFullName] = useState("");
         const [email,setEmail] = useState("");
-        const [username,setUsername] = useState("");
         const [phone, setPhone] = useState("");
-        const [password,setPassword] = useState("");
-    
-
+        
     const handleRegister = async() => {
         const userData = {
             name: fullName,
